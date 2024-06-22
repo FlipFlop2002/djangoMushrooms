@@ -1,0 +1,23 @@
+{% extends 'main.html' %} {% block content %}
+
+<div id="coursesContainer">
+  <div class="courses-info">
+    <h2>Kurs - {{ course.name }}</h2>
+  </div>
+  <div class="courses-content">
+    {% for item in theory_items %}
+    <div class="courses-element-text">{{ item.content }}</div>
+    {% if item.image %}
+    <div class="courses-element-img">
+      <img src="{{ item.image.url }}" alt="Theory Image" />
+    </div>
+
+    {% endif %}
+    <hr />
+    {% endfor %} {% if user.is_authenticated %}
+    <div class="course-check">
+      <a href="{% url 'course_test' course.id %}">Sprawdź się</a>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock %}

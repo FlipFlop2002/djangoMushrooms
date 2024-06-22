@@ -1,0 +1,270 @@
+{% extends 'main.html' %} {% block content %}
+
+<div class="id-body">
+  <div class="id-left">
+    <!-- <h2>Identyfikowane zdjęcie</h2> -->
+    <img class="id-upload-img" src="{{ image }}" alt="Uploaded Image" />
+    <div class="id-button">
+      <a class="classic-button classic-button-2" href="{% url 'compare' mushroom.id %}">Porównaj</a>
+    </div>  
+  </div>
+
+  <div class="id-right">
+    <div class="id-right-content">
+      <h2>Wynik identyfikacji</h2>
+      <div class="id-result">
+        <div class="id-result-percentage">
+          <p class="percentage" id="probability-value">
+            {{ probability }}%
+          </p>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+              var probabilityElement = document.getElementById('probability-value');
+              var probability = parseInt(probabilityElement.textContent);
+              const pro = probability;
+              var probabilityLine = document.querySelector(".id-result-percentage");
+              if (isNaN(probability)) {
+                  console.error('Invalid probability value');
+                  return;
+              }
+              probabilityLine.style.width = pro+"%";
+              if (probability >= 80) {
+                  probabilityLine.style.backgroundColor = 'green';
+              } else if (probability >= 50) {
+                  probabilityLine.style.backgroundColor = 'orange';
+              } else {
+                  probabilityLine.style.backgroundColor = 'red';
+              }
+          });
+        </script>
+      </div>
+
+      <div class="id-result-info">
+        {% if mushroom.edible %}
+        <p class="edible">GRZYB JADALNY</p>
+        {% else %}
+        <p class="inedible">GRZYB NIEJADALNY</p>
+        {% endif %}
+        <a class="mushroom-link" href="{% url 'mushroom' mushroom.id %}" class="mushroom-name">{{ mushroom.name }}</a>  
+      </div>
+      
+      <h2>Przeglądaj</h2>
+      <div class="id-result-images">
+        <!-- <div class="id-images"> -->
+          <img class="mySlides" src="{{ mushroom.img1.url }}"/>
+          <img class="mySlides" src="{{ mushroom.img2.url }}"/>
+          <img class="mySlides" src="{{ mushroom.img3.url }}"/>
+          <img class="mySlides" src="img_forest.jpg"/>
+        </div>
+        <div class="mushroom-button-body">
+          <button class="w3-button mushroom-button" onclick="plusDivs(-1)">&#10094;</button>
+          <button class="w3-button mushroom-button" onclick="plusDivs(1)">&#10095;</button>  
+        </div>
+  
+        <script>
+          var slideIndex = 1;
+          showDivs(slideIndex);
+        </script>
+  
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+</div>
+<!-- 
+<div class="id-container">
+
+  <div class="id-container-left">
+      <img class="id-upload-img" src="{{ image }}" alt="Uploaded Image" />
+  </div>
+  <div class="arrow-right1"></div>
+  <div class="arrow-right2"></div>
+
+  <div class="id-container-right">
+    <div class="id-container-right-content">
+      <h2>Wynik identyfikacji:</h2>
+
+      <div class="id-result">
+        <p class="percentage id-result-percentage">
+          {{ probability }}%
+        </p>
+        <div class="id-result-info">
+          {% if mushroom.edible %}
+          <p class="edible">GRZYB JADALNY</p>
+          {% else %}
+          <p class="inedible">GRZYB NIEJADALNY</p>
+          {% endif %}
+          <a class="mushroom-link" href="{% url 'mushroom' mushroom.id %}" class="mushroom-name">{{ mushroom.name }}</a>
+        </div>
+
+      </div>
+    </div>
+ -->
+
+    <!-- <h2>Przeglądaj</h2>
+
+    <div class="id-container-right-bottom">
+      <div class="mushroom-images">
+        <button class="w3-button mushroom-button" onclick="plusDivs(-1)">&#10094;</button>
+        <img class="mySlides" src="{{ mushroom.img1.url }}"/>
+        <img class="mySlides" src="{{ mushroom.img2.url }}"/>
+        <img class="mySlides" src="{{ mushroom.img3.url }}"/>
+        <img class="mySlides" src="img_forest.jpg"/>
+        <button class="w3-button mushroom-button" onclick="plusDivs(1)">&#10095;</button>
+      </div>
+
+      <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+      </script>
+
+      <a class="classic-button classic-button-2" href="{% url 'compare' mushroom.id %}">Porównaj</a>
+    </div>
+ -->
+
+  <!-- </div>
+
+
+</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<div class="id-container">
+  <div class="id-container-img">
+    <img class="id-upload-img" src="{{ image }}" alt="Uploaded Image" />
+
+  </div>
+
+    <div class="id-result-container">
+      <div class="id-result-container-right">
+        <h2>Wynik identyfikacji:</h2>
+
+        <div class="id-result">
+
+          <p class="percentage id-result-percentage"> -->
+            <!-- {{ probability }}% -->
+          <!-- 98%</p>
+          <div class="id-result-info">
+            {% if mushroom.edible %}
+            <p class="edible">GRZYB JADALNY</p>
+            {% else %}
+            <p class="inedible">GRZYB NIEJADALNY</p>
+            {% endif %}
+            <a class="mushroom-link" href="{% url 'mushroom' mushroom.id %}" class="mushroom-name">{{ mushroom.name }}</a>
+          </div>
+
+        </div>
+
+      </div>
+      Przeglądaj -->
+      <!-- <div class="id-result-container-bottom"> -->
+        <!-- <div class="mushroom-images">
+          <button class="w3-button mushroom-button" onclick="plusDivs(-1)">&#10094;</button>
+          <img class="mySlides" src="{{ mushroom.img1.url }}"/>
+          <img class="mySlides" src="{{ mushroom.img2.url }}"/>
+          <img class="mySlides" src="{{ mushroom.img3.url }}"/>
+          <img class="mySlides" src="img_forest.jpg"/>
+          <button class="w3-button mushroom-button" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+
+        <script>
+          var slideIndex = 1;
+          showDivs(slideIndex);
+        </script>
+
+        <a class="classic-button" href="{% url 'compare' mushroom.id %}">Porównaj</a> -->
+      <!-- </div> -->
+
+      <!-- <div class="mushroom-content-middle">
+        <div class="mushroom-images">
+          <button class="w3-button mushroom-button" onclick="plusDivs(-1)">&#10094;</button>
+          <img class="mySlides" src="{{ mushroom.img1.url }}"/>
+          <img class="mySlides" src="{{ mushroom.img2.url }}"/>
+          <img class="mySlides" src="{{ mushroom.img3.url }}"/>
+          <img class="mySlides" src="img_forest.jpg"/>
+          <button class="w3-button mushroom-button" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+
+        <script>
+          var slideIndex = 1;
+          showDivs(slideIndex);
+        </script>
+      </div>
+
+
+      <div class="additional-images">
+        <img class="db_mushroom_photo" src="{{ mushroom.img1.url }}" />
+        <img class="db_mushroom_photo" src="{{ mushroom.img2.url }}" />
+        <img class="db_mushroom_photo" src="{{ mushroom.img3.url }}" />
+      </div>
+     -->
+
+
+    <!-- </div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+  <!-- <div class="uploaded-image">
+    <img src="{{ image }}" alt="Uploaded Image" />
+  </div>
+  <div class="result">
+    <h2>Wynik identyfikacji:</h2>
+    <p class="percentage">{{ probability }}%</p>
+    <div>
+      <a href="{% url 'mushroom' mushroom.id %}" class="mushroom-name"
+        >{{ mushroom.name }}</a
+      >
+    </div>
+    {% if mushroom.edible %}
+    <p class="edible">GRZYB JADALNY</p>
+    {% else %}
+    <p class="inedible">GRZYB NIEJADALNY</p>
+    {% endif %}
+    <div><a href="{% url 'compare' mushroom.id %}">Porównaj</a></div>
+  </div>
+  <div class="additional-images">
+    <img class="db_mushroom_photo" src="{{ mushroom.img1.url }}" />
+    <img class="db_mushroom_photo" src="{{ mushroom.img2.url }}" />
+    <img class="db_mushroom_photo" src="{{ mushroom.img3.url }}" />
+  </div> -->
+</div>
+
+{% endblock %}

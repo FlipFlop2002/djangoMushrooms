@@ -1,0 +1,16 @@
+{% extends 'main.html' %} {% block content %}
+
+<div id="categoriesRecpiesContainer">
+  <div class="categories-info">
+    <h2>Przepisy</h2>
+  </div>
+  <div class="categories-content">
+    <div class="categories-element"> 
+      {% for category in categories %}
+      <a href="{% url 'recipes' category.id %}">{{ category.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

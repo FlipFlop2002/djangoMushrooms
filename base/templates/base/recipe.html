@@ -1,0 +1,43 @@
+{% extends 'main.html' %} {% block content %}
+
+<div id="categoriesRecpiesContainer">
+  <div class="categories-info">
+    <h2>{{ recipe.name }}</h2>
+  </div>
+  <div class="categories-content">
+    <div class="categories-top">
+
+      <div class="recipe-content-text">
+        <span>Składniki:</span>
+        <div class="component-content">
+          {% for ingredient, quantity in recipe.ingredients.items %}
+          <p>{{ ingredient }} - {{ quantity }}</p>
+          {% endfor %}
+        </div>
+      </div>
+  
+      <div class="recipe-content-img">
+        <img class="recipe_photo" src="{{ recipe.img1.url }}" />
+      </div>
+  
+    </div>
+
+    <div class="recipe-content-text">
+      <span>Przygotowanie:</span>
+      <ul>
+        {% for number, instruction in recipe.instructions.items %}
+        <div class="instruction-elem">
+          <li><strong>{{ number }}</strong> - {{ instruction }}</li>
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="recipe-content-img-last">
+      <img class="recipe_photo" src="{{ recipe.img2.url }}" />
+    </div>  
+  </div>
+
+</div>
+
+{% endblock %}

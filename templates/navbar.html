@@ -1,0 +1,51 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+  <div class="navbar-container">
+    <div class="navbar-content">  
+      <div class="ok">
+        <button class="dropbtn" onclick="changeTab()">
+          <i id="menuIcon" class="fas fa-bars white"></i>
+        </button>  
+      </div>
+    </div>
+    <div class="navbar-tab">
+
+      <div class="navbar-tab-top">
+        <a href="{% url 'home' %}" class="navbarTextContainer">Identyfikacja</a>
+        <a href="{% url 'mushrooms' %}" class="navbarTextContainer">Grzyby</a>
+        <a href="{% url 'abc' %}" class="navbarTextContainer">ABC grzybiarza</a>
+        <a href="{% url 'courses' %}" class="navbarTextContainer">Kursy</a>
+        <a href="{% url 'recipes_categories' %}" class="navbarTextContainer">Przepisy</a>    
+      </div>
+      
+      <div class="navbar-tab-bottom">
+        {% if user.is_authenticated %}
+        <div class="welcome-text">
+          <h2>
+            Cześć, {{ user.username }}.
+          </h2>
+          Miło nam Cię znowu widzieć!
+        </div>
+        <div class="user-content">
+        <!-- Treść dostępna tylko dla zalogowanych użytkowników -->
+          <a href="{% url 'profile' %}" class="navbarTextContainer">Mój profil</a>
+          <a href="{% url 'logout' %}" class="navbarTextContainer">Wyloguj
+            <i class="fas fa-sign-out-alt icon-padding"></i>
+          </a>
+        </div>
+        {% else %}
+      
+        <!-- Treść dostępna tylko dla niezalogowanych użytkowników -->
+        <a href="{% url 'login' %}" class="navbarTextContainer">Zaloguj
+          <i class="fas fa-lock icon-padding"></i>
+        </a>
+        <a href="{% url 'register' %}" class="navbarTextContainer">Zarejestruj
+          <i class="fas fa-arrow-up icon-padding"></i>
+        </a>
+        {% endif %}  
+      </div>
+    
+    </div>    
+</div>
